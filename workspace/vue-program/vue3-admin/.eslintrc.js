@@ -12,8 +12,6 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'space-before-function-paren': 'off',
     'vue/multi-word-component-names': 'off',
-    'no-unused-vars': 'warn',
-    'eslint-disable-next-line': 'off',
-    'no-undef': 'off'
+    'no-unused-vars': 'warn'
   }
 }
