@@ -144,9 +144,12 @@
   }
 
   .withoutAnimation {
-    .main-container,
+    .main-container {
+      transition: margin-left #{$sideBarDuration};
+    }
+  
     .sidebar-container {
-      transition: none;
+      transition: width #{$sideBarDuration};
     }
   }
 }
