@@ -15,8 +15,10 @@ import i18n from '@/i18n'
 // filter
 import installFilter from '@/filter'
 
-const app = createApp(App)
+import installDirective from '@/directives'
 
+const app = createApp(App)
+installDirective(app)
 installFilter(app)
 installElementPlus(app)
 installIcons(app)
