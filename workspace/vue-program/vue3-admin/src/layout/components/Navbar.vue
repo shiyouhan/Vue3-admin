@@ -43,10 +43,12 @@ import Guide from '@/components/Guide'
 import { useStore } from 'vuex'
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import { resetRouter } from '@/router'
 
 // 推出登录操作
 const store = useStore()
 const logout = () => {
+  resetRouter()
   store.dispatch('user/logout')
 }
 
