@@ -90,10 +90,10 @@ export default {
     feature: 'Feature',
     chapter: 'Chapter',
     author: 'Author',
-    name: 'syhan',
-    job: 'Collage student',
+    name: 'poicc',
+    job: 'A student majoring in software',
     Introduction:
-      'The wind is free, I hope you are too.'
+      'Software major senior Web full stack yyds'
   },
   userInfo: {
     print: 'Print',

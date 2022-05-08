@@ -1,4 +1,8 @@
-import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
+import {
+  createRouter,
+  createWebHistory,
+  createWebHashHistory
+} from 'vue-router'
 import layout from '@/layout'
 import UserManageRouter from './modules/UserManage'
 import RoleListRouter from './modules/RoleList'
@@ -24,7 +28,8 @@ export const privateRoutes = [
 export const publicRoutes = [
   {
     path: '/login',
-    component: () => import(/* webpackChunkName: "login" */ '@/views/login/index')
+    component: () =>
+      import(/* webpackChunkName: "login" */ '@/views/login/index')
   },
   {
     path: '/',
@@ -34,7 +39,8 @@ export const publicRoutes = [
       {
         path: '/profile',
         name: 'profile',
-        component: () => import(/* webpackChunkName: "profile" */ '@/views/profile/index'),
+        component: () =>
+          import(/* webpackChunkName: "profile" */ '@/views/profile/index'),
         meta: {
           title: 'profile',
           icon: 'personnel'
@@ -43,12 +49,14 @@ export const publicRoutes = [
       {
         path: '/404',
         name: '404',
-        component: () => import(/* webpackChunkName: "error-page" */ '@/views/error-page/404')
+        component: () =>
+          import(/* webpackChunkName: "error-page" */ '@/views/error-page/404')
       },
       {
         path: '/401',
         name: '401',
-        component: () => import(/* webpackChunkName: "error-page" */ '@/views/error-page/401')
+        component: () =>
+          import(/* webpackChunkName: "error-page" */ '@/views/error-page/401')
       }
     ]
   }
@@ -58,7 +66,11 @@ export const publicRoutes = [
  * 初始化路由表
  */
 export function resetRouter() {
-  if (store.getters.userInfo && store.getters.userInfo.permission && store.getters.userInfo.permission.menus) {
+  if (
+    store.getters.userInfo &&
+    store.getters.userInfo.permission &&
+    store.getters.userInfo.permission.menus
+  ) {
     const menus = store.getters.userInfo.permission.menus
     menus.forEach((menu) => {
       router.removeRoute(menu)
@@ -67,7 +79,10 @@ export function resetRouter() {
 }
 
 const router = createRouter({
-  history: process.env.NODE_ENV === 'production' ? createWebHistory() : createWebHashHistory(),
+  history:
+    process.env.NODE_ENV === 'production'
+      ? createWebHistory()
+      : createWebHashHistory(),
   routes: publicRoutes
 })
 

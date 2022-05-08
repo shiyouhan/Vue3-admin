@@ -1,5 +1,9 @@
 <template>
-  <el-dialog :title="$t('msg.excel.roleDialogTitle')" :model-value="modelValue" @close="closed">
+  <el-dialog
+    :title="$t('msg.excel.roleDialogTitle')"
+    :model-value="modelValue"
+    @close="closed"
+  >
     <el-tree
       ref="treeRef"
       :data="allPermission"
@@ -14,7 +18,9 @@
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="closed">{{ $t('msg.universal.cancel') }}</el-button>
-        <el-button type="primary" @click="onConfirm">{{ $t('msg.universal.confirm') }}</el-button>
+        <el-button type="primary" @click="onConfirm">{{
+          $t('msg.universal.confirm')
+        }}</el-button>
       </span>
     </template>
   </el-dialog>
@@ -27,18 +33,6 @@ import { rolePermission, distributePermission } from '@/api/role'
 import { useI18n } from 'vue-i18n'
 import { ElMessage } from 'element-plus'
 import { watchSwitchLang } from '@/utils/i18n'
-
-const props = defineProps({
-  modelValue: {
-    type: Boolean,
-    required: true
-  },
-  roleId: {
-    type: String,
-    required: true
-  }
-})
-const emits = defineEmits(['update:modelValue'])
 
 /**
   确定按钮点击事件
@@ -53,6 +47,18 @@ const onConfirm = async () => {
   ElMessage.success(i18n.t('msg.role.updateRoleSuccess'))
   closed()
 }
+
+const props = defineProps({
+  modelValue: {
+    type: Boolean,
+    required: true
+  },
+  roleId: {
+    type: String,
+    required: true
+  }
+})
+const emits = defineEmits(['update:modelValue'])
 
 /**
  * 关闭

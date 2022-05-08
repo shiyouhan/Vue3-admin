@@ -89,10 +89,10 @@ export default {
     feature: '功能',
     chapter: '章节',
     author: '作者',
-    name: 'syhan',
-    job: '大学生',
+    name: '陈蓉琪',
+    job: '一个软件专业的学生',
     Introduction:
-      '风是自由的，希望你也是。'
+      '软件专业的大四学生 Web全栈yyds'
   },
   userInfo: {
     print: '打印',
