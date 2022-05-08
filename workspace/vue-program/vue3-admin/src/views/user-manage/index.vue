@@ -38,7 +38,9 @@
             <el-button type="primary" size="mini" @click="onShowClick(row._id)">
               {{ $t('msg.excel.show') }}
             </el-button>
-            <el-button type="info" size="mini">{{ $t('msg.excel.showRole') }}</el-button>
+            <el-button type="info" size="mini" @click="onShowRoleClick(row)">
+              {{ $t('msg.excel.showRole') }}
+            </el-button>
             <el-button type="danger" size="mini" @click="onRemoveClick(row)">{{ $t('msg.excel.remove') }}</el-button>
           </template>
         </el-table-column>
@@ -58,6 +60,7 @@
     </el-card>
 
     <export-to-excel v-model="exportToExcelVisible"></export-to-excel>
+    <roles-dialog v-model="roleDialogVisible" :userId="selectUserId" @updateRole="getListData"></roles-dialog>
   </div>
 </template>
 
@@ -68,6 +71,7 @@ import { watchSwitchLang } from '@/utils/i18n'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import ExportToExcel from './components/Export2Excel.vue'
+import RolesDialog from './components/roles.vue'
 
 // 数据相关
 const tableData = ref([])
@@ -140,6 +144,16 @@ const onToExcelClick = () => {
  */
 const onShowClick = (id) => {
   router.push(`/user/info/${id}`)
+}
+
+/**
+ * 查看角色的点击事件
+ */
+const roleDialogVisible = ref(false)
+const selectUserId = ref('')
+const onShowRoleClick = (row) => {
+  roleDialogVisible.value = true
+  selectUserId.value = row._id
 }
 </script>
 
