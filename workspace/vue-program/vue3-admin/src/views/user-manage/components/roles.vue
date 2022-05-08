@@ -17,6 +17,7 @@
 import { ref, watch } from 'vue'
 import { roleList } from '@/api/role'
 import { watchSwitchLang } from '@/utils/i18n'
+import { useI18n } from 'vue-i18n'
 
 // 当前用户角色
 const userRoleTitleList = ref([])
@@ -54,13 +55,6 @@ const props = defineProps({
 const emits = defineEmits(['update:modelValue'])
 
 /**
- * 关闭
- */
-const closed = () => {
-  emits('update:modelValue', false)
-}
-
-/**
   确定按钮点击事件
  */
 const i18n = useI18n()
@@ -80,6 +74,13 @@ const onConfirm = async () => {
   closed()
   // 角色更新成功
   emits('updateRole')
+}
+
+/**
+ * 关闭
+ */
+const closed = () => {
+  emits('update:modelValue', false)
 }
 </script>
 
