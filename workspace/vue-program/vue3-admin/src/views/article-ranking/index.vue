@@ -23,21 +23,6 @@
           </template>
         </el-table-column>
       </el-table>
-      <!-- <el-table ref="tableRef" :data="tableData" border>
-        <el-table-column :label="$t('msg.article.ranking')" prop="ranking"></el-table-column>
-        <el-table-column :label="$t('msg.article.title')" prop="title"></el-table-column>
-        <el-table-column :label="$t('msg.article.author')" prop="author"></el-table-column>
-        <el-table-column :label="$t('msg.article.publicDate')">
-          <template #default="{ row }">
-            {{ $filters.relativeTime(row.publicDate) }}
-          </template>
-        </el-table-column>
-        <el-table-column :label="$t('msg.article.desc')" prop="desc"></el-table-column>
-        <el-table-column :label="$t('msg.article.action')">
-          <el-button type="primary" size="mini" @click="onShowClick(row)">{{ $t('msg.article.show') }}</el-button>
-          <el-button type="danger" size="mini" @click="onRemoveClick(row)">{{ $t('msg.article.remove') }}</el-button>
-        </el-table-column>
-      </el-table> -->
       <el-pagination
         class="pagination"
         @size-change="handleSizeChange"
@@ -54,10 +39,16 @@
 </template>
 
 <script setup>
-import { ref, onActivated } from 'vue'
+import { ref, onActivated, onMounted } from 'vue'
 import { getArticleList } from '@/api/article'
 import { watchSwitchLang } from '@/utils/i18n'
 import { dynamicData, selectDynamicLabel, tableColumns } from './dynamic'
+import { tableRef, initSortable } from './sortable'
+
+// 表格拖拽相关
+onMounted(() => {
+  initSortable(tableData, getListData)
+})
 
 /**
  * size 改变触发
@@ -114,6 +105,12 @@ onActivated(getListData)
 
   ::v-deep(.el-table__row) {
     cursor: pointer;
+  }
+
+  ::v-deep(.sortable-ghost) {
+    opacity: 0.6;
+    color: #fff !important;
+    background: #304156 !important;
   }
 
   .pagination {
